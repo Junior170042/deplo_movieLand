@@ -53,7 +53,7 @@ const Footer = () => {
                 >
                     © 2022 Copyright:
                     <a className="text-dark" href="m">
-                        St-Verty@designer
+                        J7Coder St-Verty@designer
                     </a>
                 </div>
 
