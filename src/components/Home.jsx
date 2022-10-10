@@ -4,7 +4,7 @@ const Home = () => {
 
     const [page, setPage] = useState(1);
 
-    const url = `http://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2022&api_key=ce34f04e42f935f347ac371d31c2b114&page=${page}`
+    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2022&api_key=ce34f04e42f935f347ac371d31c2b114&page=${page}`
     return (
 
         <div className="home">

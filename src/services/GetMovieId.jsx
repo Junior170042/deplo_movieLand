@@ -56,7 +56,7 @@ const GetMovie = ({ _URL }) => {
 
         fetchMovies()
 
-    }, [])
+    }, [_URL])
 
 
 
