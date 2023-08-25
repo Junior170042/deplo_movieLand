@@ -8,8 +8,9 @@ const GetMovie = ({ _URL }) => {
     const ShowMovie = (movies) => {
         const path = "https://image.tmdb.org/t/p/w500"
 
+
+
         const verMovie = movie => {
-            console.log(movie.title)
             return (
                 <div className="col-10" key={movie.id} >
                     <h1 className="text-center my-4 single">{movie.title}</h1>
@@ -18,10 +19,15 @@ const GetMovie = ({ _URL }) => {
                             alt={movie.title} />
                         <div className="card-body text-center">
                             <h4 className="card-title titles">{movie.title}</h4>
-                            <a href={movie.homepage} className="btn btn-primary btn-play"
-                                target="_blank" rel="noopener noreferrer">
-                                Trailler <i className="fa fa-play"></i>
+
+                            <a style={{ pointerEvents: movie.homepage ? '' : 'none' }} href={movie.homepage && movie.homepage} target="_blank"
+
+                                className={`btn ${movie.homepage ? 'btn-primary' : 'btn-secondary'} btn-play`}
+
+                            >
+                                Web oficial
                             </a>
+
                         </div>
                     </div>
                 </div>

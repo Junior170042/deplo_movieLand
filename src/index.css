@@ -56,6 +56,10 @@ code {
   font-size: 20px;
 }
 
+.btn-secondary.btn-play{
+  cursor:copy
+}
+
 .titulo {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 60px;
