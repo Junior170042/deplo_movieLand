@@ -21,7 +21,6 @@ const GetMovies = ({ _URL }) => {
             const data = await getDatas.json();
 
             if (mounted) {
-                console.log(data.results)
                 setMovies(await data.results);
                 setLoading(false)
             }
