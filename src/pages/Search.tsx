@@ -8,9 +8,8 @@ const Search = () => {
 
     return (
         <div className=" popular">
-            {<h1 className="titulo text-center">Peliculas encontradas</h1>}
             <div className="row mx-auto">
-                <GetMovies _URL={url} />
+                <GetMovies _URL={url} textTitle="Peliculas encontradas" />
             </div>
         </div>
     )
