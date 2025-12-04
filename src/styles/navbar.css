@@ -1,0 +1,377 @@
+/*The navbar*/
+.nav-bar {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--darkBlueColor);
+    position: fixed;
+    z-index: 999;
+    top: 0;
+}
+
+.nav-bar .box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.nav-bar .logo {
+    color: var(--lightRedColor);
+    width: 25%;
+    font-size: 35px !important;
+    text-decoration: none;
+    animation: glowLogo 2s ease-in-out infinite;
+
+}
+
+@keyframes glowLogo {
+    0% {
+        opacity: .6;
+    }
+
+    50% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: .6;
+    }
+}
+
+.nav-bar .box-links {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 24px;
+    opacity: 1;
+}
+
+
+.nav-bar a {
+    float: left;
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 6px 24px;
+}
+
+.nav-bar a:hover:not(.logo) {
+    transform: scale(1.3);
+    transition: all .5s ease-in-out;
+}
+
+.nav-bar a:hover:not(.logo)::after {
+    content: "";
+    position: absolute;
+    bottom: 80%;
+    left: 25%;
+    width: 55%;
+    height: 1.6px;
+    background-color: var(--lightRedColor);
+    border-radius: 3px;
+    animation: activelinks .5s ease-in-out forwards;
+}
+
+@keyframes glowLinks {
+    0% {
+        opacity: .6;
+    }
+
+    50% {
+        opacity: .8;
+    }
+
+    100% {
+        opacity: .6;
+    }
+}
+
+.nav-bar a:first-child {
+    font-size: 30px;
+}
+
+.nav-bar a:not(.logo) {
+    position: relative;
+}
+
+.nav-bar a:not(.logo)::after {
+    content: "";
+    position: absolute;
+    bottom: 80%;
+    left: 25%;
+    width: 0;
+    height: 0;
+    background-color: var(--lightRedColor);
+    border-radius: 3px;
+    opacity: 0;
+    transition: all .5s ease-in-out;
+}
+
+/*something attractive*/
+a.active:not(.logo) {
+    animation: glowLinks 1s ease-in-out infinite;
+    transform: scale(1.3);
+    transition: all 1s ease-in-out;
+}
+
+a.active:not(.logo)::after {
+    content: "";
+    position: absolute;
+    bottom: 75%;
+    left: 25%;
+    width: 50%;
+    height: 1.5px;
+    background-color: var(--lightRedColor);
+    border-radius: 6px;
+    animation: activelinks 1s ease-in-out forwards;
+}
+
+@keyframes activelinks {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        width: 50%;
+        opacity: .9;
+    }
+}
+
+/*The form*/
+.nav-bar form {
+    margin: 20px 0 12px 40px;
+    padding: 8px;
+    display: inline-block;
+    width: 80%;
+    height: 60px;
+    margin-left: 80px;
+    float: none;
+    background-color: var(--backColor);
+    border-radius: 24px;
+    position: relative;
+}
+
+.nav-bar form input {
+    height: 100%;
+    width: 100%;
+    color: var(--violetColor);
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+    padding: 4px 4px 4px 20px;
+    font-size: 22px;
+    background-color: var(--backColor);
+}
+
+.nav-bar form input::placeholder {
+    color: var(--violetColor);
+    font-style: italic;
+    opacity: .6;
+    font-size: 18px;
+}
+
+.nav-bar form .search-btn {
+    position: absolute;
+    right: 40px;
+    top: 45%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-bar form .search-btn i {
+    color: var(--violetColor);
+    font-size: 24px;
+}
+
+.nav-bar form .delete-btn {
+    position: absolute;
+    right: 35%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-bar form .delete-btn i {
+    color: var(--violetColor);
+    font-size: 24px;
+}
+
+
+.nav-bar form i:hover {
+    transform: scale(1.2);
+}
+
+form input {
+    padding: 24px;
+    font-size: 24px;
+}
+
+form input:focus {
+    border: 1.2px solid var(--lightRedColor);
+    outline: none;
+    padding: 24px;
+    border-radius: 26px;
+}
+
+.nav-bar button.icon {
+    display: none;
+}
+
+.nav-bar .box-links button.icon-close {
+    display: none;
+}
+
+
+/*animation aparition effect for links*/
+@keyframes aparition {
+    0% {
+        opacity: 0;
+        transform: translateY(-300px);
+        font-size: 0;
+    }
+
+    50% {
+        opacity: .8;
+        transform: translateY(-50px);
+        font-size: 20px;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        font-size: 20px;
+    }
+}
+
+
+/* handling responsives size of screen (4 sizes alest) */
+@media screen and (max-width: 920px) {
+
+    .nav-bar .box-links.fade-out {
+        position: absolute;
+        opacity: 1;
+        top: 0;
+        right: 0;
+        width: 100%;
+        transition: top 1s ease-in-out;
+    }
+
+    .nav-bar .box-links a {
+        display: none;
+        opacity: 0;
+        animation: none;
+        transition: all 1s ease-in-out;
+    }
+
+    .nav-bar form {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        left: 25%;
+    }
+
+    .nav-bar form .search-btn,
+    .nav-bar form .delete-btn {
+        top: 35%;
+    }
+
+    .nav-bar .logo {
+        font-size: 45px !important;
+    }
+
+    .nav-bar button.icon {
+        float: right;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 30px;
+        margin: 30px 24px 0 0;
+    }
+
+    .nav-bar button {
+        border: none;
+        border-radius: 3px;
+        width: 25px;
+        height: 25px;
+        background: transparent;
+        color: #fff;
+    }
+
+    .nav-bar.responsives form {
+        opacity: .3;
+        transition: all 1s ease-in-out;
+    }
+
+    .nav-bar.responsives .box-links {
+        position: absolute;
+        opacity: 1;
+        top: 0;
+        right: 0;
+        background: #030249;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(99, 3, 3, 0.5);
+        width: 50%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+        transition: all .5s ease-in-out;
+    }
+
+    .nav-bar .box-links.fade-out {
+        top: 15%;
+        transition: all 1s ease-in-out;
+        height: 100vh;
+        width: 0;
+    }
+
+    .nav-bar.responsives .box-links button.icon-close {
+        position: absolute;
+        display: block;
+        right: 24px;
+        top: 25px;
+        font-size: 35px;
+    }
+
+    .nav-bar.responsives .box-links a {
+        display: block;
+        margin-bottom: 25px;
+        transition: all .5s ease-in-out;
+        animation: aparition 1.5s ease-in-out forwards;
+    }
+
+}
+
+/*Tablet break point*/
+@media screen and (max-width: 768px) {
+    .nav-bar {
+        height: 12rem;
+    }
+
+    .nav-bar form {
+        position: relative;
+        width: 80%;
+        left: -6%;
+    }
+}
+
+@media screen and (max-width: 540px) {}
+
+@media screen and (max-width: 500px) {}
+
+@media screen and (max-width: 280px) {}

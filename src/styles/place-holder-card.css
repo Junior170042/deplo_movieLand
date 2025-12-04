@@ -1,0 +1,218 @@
+/* Placeholder Card Container */
+.movie-placeholder-card {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--darkRedColor);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--darkRedColor);
+    box-shadow:
+        0 20px 40px var(--darkRedColor),
+        0 0 0 1px var(--darkRedColor),
+        inset 0 0 0 1px var(--darkRedColor);
+    animation: placeholderPulse 2s ease-in-out infinite;
+}
+
+.placeholder-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 24px;
+    filter: blur(15px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.placeholder-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+@keyframes placeholderPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.1) 20%,
+            rgba(255, 255, 255, 0.05) 40%,
+            rgba(255, 255, 255, 0.05) 100%);
+    background-size: 800px 104px;
+    animation: shimmer 2s infinite linear;
+    border-radius: 8px;
+}
+
+/* Placeholder Image */
+.placeholder-image {
+    width: 100%;
+    height: 65%;
+    background: rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    opacity: 0.3;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.4;
+    }
+}
+
+/* Placeholder Info */
+.placeholder-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem;
+    color: white;
+}
+
+.placeholder-title {
+    width: 70%;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+}
+
+.placeholder-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.placeholder-rating,
+.placeholder-year {
+    width: 100px;
+    height: 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+.placeholder-overview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.placeholder-line {
+    width: 100%;
+    height: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+}
+
+.placeholder-line-short {
+    width: 60%;
+    height: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .movie-placeholder-card {
+        height: 400px;
+    }
+
+    .placeholder-info {
+        padding: 2rem;
+    }
+
+    .placeholder-title {
+        height: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .placeholder-meta {
+        margin-bottom: 1rem;
+    }
+
+    .placeholder-icon {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-placeholder-card {
+        height: 350px;
+    }
+
+    .placeholder-info {
+        padding: 1.5rem;
+    }
+
+    .placeholder-title {
+        width: 85%;
+        height: 1.8rem;
+    }
+
+    .placeholder-meta {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .placeholder-rating,
+    .placeholder-year {
+        width: 80px;
+        height: 1.5rem;
+    }
+
+    .placeholder-overview {
+        gap: 0.6rem;
+    }
+
+    .placeholder-line,
+    .placeholder-line-short {
+        height: 0.8rem;
+    }
+}

@@ -1,0 +1,81 @@
+/* Loading Component Styles */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--backColor);
+}
+
+.film-reel {
+    width: 80px;
+    height: 80px;
+    border: 8px solid #e3e2df;
+    /* Light gray/off-white */
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 20px rgba(235, 181, 19, 0.2);
+    animation: spin 2s linear infinite;
+}
+
+.film-reel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: #e3e2df;
+    border-radius: 50%;
+}
+
+.film-reel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background:
+        radial-gradient(transparent 40%, #06040e 41%),
+        conic-gradient(transparent 0deg, #e3e2df 10deg, transparent 20deg, #e3e2df 30deg, transparent 40deg, #e3e2df 50deg, transparent 60deg, #e3e2df 70deg, transparent 80deg, #e3e2df 90deg, transparent 100deg, #e3e2df 110deg, transparent 120deg, #e3e2df 130deg, transparent 140deg, #e3e2df 150deg, transparent 160deg, #e3e2df 170deg, transparent 180deg, #e3e2df 190deg, transparent 200deg, #e3e2df 210deg, transparent 220deg, #e3e2df 230deg, transparent 240deg, #e3e2df 250deg, transparent 260deg, #e3e2df 270deg, transparent 280deg, #e3e2df 290deg, transparent 300deg, #e3e2df 310deg, transparent 320deg, #e3e2df 330deg, transparent 340deg, #e3e2df 350deg);
+    mask-image: radial-gradient(transparent 45%, var(--backColor) 46%);
+    -webkit-mask-image: radial-gradient(transparent 45%, var(--backColor) 46%);
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-family: "Impact", sans-serif;
+    font-size: 24px;
+    color: #e3e2df;
+    letter-spacing: 2px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}

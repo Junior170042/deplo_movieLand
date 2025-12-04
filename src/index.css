@@ -1,3 +1,19 @@
+:root {
+  --primary-color: #271853;
+  --backColor: rgb(6, 4, 14);
+  --lightRedColor: rgb(247, 17, 17);
+  --redColor: rgba(141, 7, 59, 0.867);
+  --darkRedColor: rgba(59, 2, 2, 0.5);
+  --pinkColor: rgb(206, 6, 212);
+  --darkPinkColor: rgba(121, 5, 175, 0.603);
+  --violetColor: rgba(142, 140, 229, 0.836);
+  --darkBlueColor: rgb(1, 7, 63);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,7 +21,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(6, 4, 14);
+  background: var(--backColor);
 }
 
 code {
@@ -13,69 +29,25 @@ code {
     monospace;
 }
 
-.single {
-  color: rgb(219, 203, 182);
-  font-weight: bold;
-  font-size: 60px;
-}
-
-/*Drop-down menu items */
-.nav-bar .drops {
-  background-color: transparent;
-  border: none;
-  float: left;
-  display: block;
-  color: #fff;
-  font-size: 24px;
-  text-align: center;
-  text-decoration: none;
-  padding: 14px 40px;
-  margin-right: 10px;
-}
-.land {
-  color: rgb(247, 6, 6) !important;
-}
-.drops:hover {
-  outline: none;
-  border-color: none;
-  background-color: transparent;
-  background: none;
-  border-bottom: 2px solid rgb(247, 5, 5);
-}
-
-.dropdown-menu {
-  background: rgb(6, 4, 14) !important;
-  border: none;
-}
-
-.page-link {
-  font-size: 20px;
-}
-.btn-play {
-  width: 50%;
-  font-size: 20px;
-}
-
-.btn-secondary.btn-play{
-  cursor:copy
-}
-
-.titulo {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 60px;
-  color: rgb(212, 204, 182);
-  padding-top: 12px;
-  padding-bottom: 12px;
-  letter-spacing: 2px;
-}
-
 .home {
   width: 100%;
   margin: 0;
   padding: 0;
-  background: rgb(6, 4, 14);
+  background: var(--darkBlueColor);
   height: 100%;
 }
+
+.titulo.text-center {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 60px;
+  color: rgb(227, 226, 223);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  letter-spacing: 2px;
+  margin-top: 10rem;
+  z-index: 100;
+}
+
 
 .popular,
 .enfantiles,
@@ -84,18 +56,40 @@ code {
   width: 100%;
   margin: 0;
   padding: 0;
-  background: rgb(6, 4, 14);
+  background: var(--darkBlueColor);
 }
 
 .cards {
-  background-color: rgb(17, 12, 41);
+  background-color: var(--backColor);
+  transition: all 0.8s ease;
+  min-height: 40rem;
+}
+
+/*cards border glowing animation*/
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px var(--lightRedColor);
+  }
+
+  50% {
+    box-shadow: 0 0 15px var(--redColor);
+  }
+
+  100% {
+    box-shadow: 0 0 5px var(--darkRedColor);
+  }
 }
 
 .cards:hover {
-  border-right: 3px solid rgb(5, 248, 115);
-  border-bottom: 3px solid rgba(131, 240, 7, 0.603);
-  transform: scale(1.02);
-  opacity: 0.6;
+  animation: glow 2s ease-in-out infinite;
+  border-right: 3px solid var(--pinkColor);
+  border-bottom: 3px solid var(--darkPinkColor);
+  transform: scale(1.01);
+  opacity: 0.5;
+}
+
+.cards .card-img-top {
+  max-height: 25rem;
 }
 
 .titles {
@@ -117,219 +111,126 @@ code {
   color: rgb(214, 211, 206);
 }
 
-/*The navbar*/
-.nav-bar {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-  background: rgb(2, 0, 12);
+.movie-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.nav-bar a.hide {
-  display: none;
-}
-
-.nav-bar a,
-.nav-bar .dropdown-menu .dropdown-item {
-  float: left;
-  display: block;
-  color: #fff;
-  font-size: 24px;
-  text-align: center;
-  text-decoration: none;
-  padding: 14px 40px;
-  margin-right: 10px;
-}
-
-.nav-bar .dropdown-menu .dropdown-item:hover {
-  background-color: transparent;
-}
-
-.nav-bar a:first-child {
-  font-size: 35px;
-}
-
-.nav-bar a:hover:not(.logo) {
-  border-bottom: solid 3px red;
-}
-
-.active:not(.logo) {
-  border-bottom: solid 3px red;
-}
-
-/*The form*/
-.nav-bar form {
-  margin: 20px 0 12px 40px;
-  padding: 8px;
-  display: inline-block;
-  width: 80%;
-  height: 50px;
-  margin-left: 80px;
-  float: none;
-  background-color: rgb(13, 9, 32);
-  border-radius: 24px;
-}
-.nav-bar form input {
-  height: 30px;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.836);
-  border-radius: 8px;
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  background-color: var(--pinkColor);
+  color: white;
   border: none;
-  margin-bottom: 10px;
-  padding: 4px 4px 4px 20px;
+  padding: 10px 26px;
+  border-radius: 12px;
   font-size: 20px;
-  background-color: rgb(13, 9, 32);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  z-index: 100;
 }
 
-.nav-bar form a i {
-  color: #fff;
-  position: absolute;
-  top: 105px;
-  right: 200px;
-  margin: 1px 2px 12px 14px;
-  font-size: 30px;
+.scroll-to-top:hover {
+  background-color: var(--darkPinkColor);
 }
 
-.nav-bar form i:hover {
-  transform: scale(1.2);
+/* Footer styles */
+.footer-bg {
+  background-color: var(--primary-color);
 }
 
-form input:focus {
-  outline: none;
+.btn-show-details {
+  background-color: var(--redColor);
+  color: white;
+  border: none;
+  padding: 10px 26px;
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
 }
 
-.nav-bar button.icon {
-  display: none;
+.btn-show-details span {
+  transition: all 1s ease;
 }
 
-.logo-search {
-  top: 60px;
-}
+.btn-show-details:hover {
+  background-color: var(--lightRedColor);
+  color: azure;
 
-/* handling responsives size of screen (4 sizes alest) */
-@media screen and (max-width: 920px) {
-  .nav-bar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    display: block;
+  span {
+    margin-left: 10px;
+    transition: all 1s ease;
   }
 
-  .nav-bar a:not(:first-child),
-  .nav-bar .drops,
-  .nav-bar .form {
-    display: none;
-  }
-
-  .nav-bar button.icon {
-    float: right;
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 25px;
-    margin: 30px 24px 0 0;
-  }
-
-  .nav-bar button {
-    border: none;
-    border-radius: 3px;
-    width: 25px;
-    height: 25px;
-    background: transparent;
-    color: #fff;
-  }
-
-  .nav-bar.responsives .dropdown-menu {
-    position: absolute;
-    margin-bottom: 20px;
-  }
-  /* Para que los elementos del navbar se vean uno abajo del otro */
-
-  .nav-bar.responsives a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .nav-bar.responsives form {
-    display: block;
-    text-align: left;
-    width: 85%;
-  }
-
-  .nav-bar.responsives .drops {
-    display: none;
-  }
-
-  .responsives form {
-    width: 80%;
-    text-align: center;
-    margin-bottom: 10px;
-    height: 50px;
-  }
-
-  .titulo {
-    font-size: 40px;
-  }
-  .nav-bar.responsives form input {
-    position: absolute;
-    margin-top: 10px;
-    width: 60%;
-    padding: auto;
-    height: 20px;
-    font-size: 18px;
-  }
-
-  .nav-bar.responsives form a i {
-    top: 382px;
-    right: 100px;
-    font-size: 35px;
-    margin-bottom: 10px;
-  }
-
-  .nav-bar.responsives a:not(:first-child) {
-    font-size: 18px;
+  span i {
+    transform: skew(10deg);
+    transition: all 1s ease;
   }
 }
 
-@media screen and (max-width: 540px) {
-  .nav-bar.responsives form a i {
-    right: 40px;
-  }
-  .nav-bar.responsives form {
-    width: 90%;
-    margin-left: 20px;
+/*Make pagination awesome*/
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: var(--redColor);
+}
+
+.pagination button:hover {
+  background-color: var(--lightRedColor);
+  scale: 1.06;
+}
+
+.pagination button i {
+  color: azure;
+}
+
+.pagination button.page-link.active {
+  background-color: var(--pinkColor);
+}
+
+.copyright-bg {
+  background-color: var(--backColor);
+}
+
+
+
+/*medium devices */
+@media screen and (max-width: 915px) {
+  .titulo.text-center {
+    margin-top: 6rem;
   }
 }
 
-@media screen and (max-width: 500px) {
-  .nav-bar.responsives form a i {
-    right: 40px;
-    padding-bottom: 20px;
-  }
-
-  .nav-bar.responsives form {
-    width: 90%;
-    margin-left: 20px;
+@media screen and (max-width: 768px) {
+  .titulo.text-center {
+    margin-top: 12rem;
+    font-size: 3rem;
   }
 }
 
-@media screen and (max-width: 280px) {
-  .nav-bar.responsives form a i {
-    right: 10px;
-    font-size: 30px;
+/*Mobile*/
+@media screen and (max-width: 576px) {
+  .titulo.text-center {
+    font-size: 2.4rem;
   }
 
-  .nav-bar.responsives form input[type="text"] {
-    width: 100%;
+  .cards {
+    min-height: 55rem;
   }
 
-  .nav-bar.responsives form {
-    width: 100%;
-    margin-left: 4px;
-    margin-right: 4px;
-    height: 50px;
+  .cards .card-img-top {
+    max-height: 40rem;
+  }
+
+  .home .card-box {
+    min-width: 100%;
   }
 }
