@@ -1,13 +1,22 @@
 
 import GetMovies from '../services/GetMovies'
-import { API_KEY } from '../variables_env';
+import useIsScrolling from '../hooks/useScroll';
+import { useState } from 'react';
+import { PaginationButton } from '../components/paginationButtton';
+import { YearButtons } from '../components/yearButtons';
 const Dramas = () => {
-    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10&api_key=${API_KEY}&page=2`
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const { handleScroll } = useIsScrolling();
     return (
         <div className="dramas">
             <div className="row mx-auto">
-                <GetMovies _URL={url} textTitle="Peliculas de dramas" />
+                <GetMovies type="drama" textTitle="Peliculas de dramas" page={currentPage} year={currentYear} />
             </div>
+            <PaginationButton currentPage={currentPage} setCurrentPage={setCurrentPage} handleScroll={handleScroll} />
+            <YearButtons currentYear={currentYear} setCurrentYear={setCurrentYear}
+                handleScroll={handleScroll} />
         </div>
     )
 }

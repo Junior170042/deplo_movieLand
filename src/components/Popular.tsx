@@ -1,15 +1,24 @@
 
+import { useState } from 'react';
 import GetMovies from '../services/GetMovies'
-import { API_KEY } from '../variables_env';
+import useIsScrolling from '../hooks/useScroll';
+import { PaginationButton } from './paginationButtton';
+import { YearButtons } from './yearButtons';
 const Popular = () => {
-    const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const { handleScroll } = useIsScrolling();
     return (
         <div className="popular">
             <div className="row mx-auto">
-                <GetMovies _URL={url}
+                <GetMovies type="popular"
                     textTitle="Más populares"
+                    page={currentPage}
                 />
             </div>
+            <PaginationButton currentPage={currentPage} setCurrentPage={setCurrentPage} handleScroll={handleScroll} />
+            <YearButtons currentYear={currentYear} setCurrentYear={setCurrentYear}
+                handleScroll={handleScroll} />
         </div>
     )
 }

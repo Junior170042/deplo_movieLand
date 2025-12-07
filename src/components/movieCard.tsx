@@ -17,6 +17,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie, isActive }) => {
                         src={IMAGE_PATH + movie.poster_path}
                         alt={movie.title}
                         loading="lazy"
+                        onError={(e) => (e.currentTarget.src = "https://via.placeholder.com/300x450")}
                     />
                     <div className="image-overlay"></div>
                 </div>

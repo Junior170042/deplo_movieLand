@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { IMAGE_PATH } from '../variables_env';
 import { Movie } from '../types';
+
 interface ShowMoviesProps {
     movies: Movie[];
     marginTop?: string;
@@ -21,32 +22,32 @@ const ShowMovies = ({ movies, marginTop }: ShowMoviesProps) => {
         }
     }
 
-    const verMovies = (movie: Movie) => {
-        return (
-            <div className="col-sm-6 col-md-4 card-box" key={movie.id}
-                style={{ marginTop }}>
-                <div className="card mx-2 my-2 cards" >
-                    <img className="card-img-top" src={IMAGE_PATH + movie.poster_path}
-                        alt={movie.title} />
-                    <div className="card-body text-center">
-                        <h4 className="card-title titles">{movie.title}</h4>
-                        <p className="card-text years">Año : <span>{movie.release_date.substring(0, 4)}</span></p>
-                        <p className="card-text years">Idioma : <span>{setLanguages(movie.original_language!)}</span></p>
-                        <Link to={`/detalles/${movie.id}`} className="btn-show-details w-full">
-                            Detalles <span><i className="fa fa-arrow-right" /></span>
-                        </Link>
+    return (
+        <div className='movies-grid' style={{ marginTop }}>
+            {movies.map(movie => (
+                <div className="movie-card-wrapper" key={movie.id}>
+                    <div className="cards">
+                        <img
+                            className="card-img-top"
+                            src={movie.poster_path ? IMAGE_PATH + movie.poster_path : 'https://via.placeholder.com/300x450'}
+                            alt={movie.title}
+                            loading="lazy"
+                        />
+                        <div className="card-body">
+                            <h4 className="card-title titles">{movie.title}</h4>
+
+                            <div className="movie-meta-info">
+                                <span className="years">{movie.release_date?.substring(0, 4)}</span>
+                                <span className="language">{setLanguages(movie.original_language || 'en')}</span>
+                            </div>
+
+                            <Link to={`/detalles/${movie.id}`} className="btn-show-details w-100 text-center">
+                                Detalles <span><i className="fa fa-arrow-right" /></span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
-    }
-    return (
-        <div className='movie-card-container'>
-            {
-                movies.map(movie => {
-                    return verMovies(movie)
-                })
-            }
+            ))}
         </div>
     )
 }

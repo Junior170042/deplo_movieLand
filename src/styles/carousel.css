@@ -1,43 +1,73 @@
 /* Movie Carousel Container */
 .movie-carousel-container {
     width: 100%;
-    height: 90vh;
+    /* Use a fixed height or min-height that makes sense for posters */
+    min-height: 600px;
+    padding: 40px 0;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(180deg, #1e035e 0%, #250101 50%, #330235 100%);
-}
-
-.carousel-loading,
-.carousel-error {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
-    font-size: 1.5rem;
-    color: #fff;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    /* Subtle gradient background */
+    background: radial-gradient(circle at center, rgb(39, 24, 83) 0%, rgb(6, 4, 14) 100%);
 }
 
 /* Swiper Overrides */
 .movie-swiper {
     width: 100%;
+    /* Allow swiper to make use of container height */
     height: 100%;
-    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
 }
 
 .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 2rem;
+    /* Define a fixed width for the slide so coverflow works nicely */
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 480px;
+    /* Remove flex centering that might conflict with card layout */
+    display: block;
+}
+
+/* Pagination Customization */
+.swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--pinkColor, #ce06d4);
+    opacity: 1;
+}
+
+/* Navigation Customization */
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--pinkColor, #ce06d4);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .movie-carousel-container {
-        height: 70vh;
+        min-height: 500px;
+        padding: 20px 0;
+    }
+
+    .swiper-slide {
+        width: 240px;
+        height: 380px;
     }
 }
 
-@media (max-width: 480px) {}
+@media (max-width: 480px) {
+    .movie-carousel-container {
+        min-height: 450px;
+    }
+
+    .swiper-slide {
+        width: 200px;
+        height: 320px;
+    }
+}

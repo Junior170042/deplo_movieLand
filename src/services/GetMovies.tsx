@@ -1,74 +1,124 @@
-import { useEffect, useState } from 'react'
-import Loading from '../components/Loading';
-import ShowMovies from '../components/ShowMovies';
-import NoMovies from './NoMovies';
-import MovieCarousel from '../components/carousel';
-import { Movie } from '../types';
-interface GetMoviesProps {
-    _URL: string;
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
+import ShowMovies from "../components/ShowMovies";
+import NoMovies from "./NoMovies";
+import MovieCarousel from "../components/carousel";
+import { Movie } from "../types";
+import { BASE_URL } from "../variables_env";
+import ShowSingleMovie from "../components/singleMovie";
+import { MoviePlaceholderCard } from "../components/moviePlaceHolder";
+
+type MovieType = "discover" | "details" | "search" | "popular" | "comedy" | "drama" | "kids" | "action" | "adventure" | "animation" | "crime" | "family" | "fantasy" | "history" | "music" | "mistery" | "sci-fi" | "thriller" | "tv" | "war" | "western";
+
+interface Props {
+    type: MovieType;
+    id?: string;
+    query?: string;
+    page?: number;
+    genres?: string;
+    year?: number;
+    cast?: string;
     textTitle?: string;
     textTitleStyle?: React.CSSProperties;
 }
 
-const GetMovies = ({ _URL, textTitle = "Películas recientes", textTitleStyle }: GetMoviesProps) => {
+const GetMovies = ({
+    type,
+    id,
+    query,
+    page = 1,
+    genres,
+    year,
+    cast,
+    textTitle = "Películas recientes",
+    textTitleStyle,
+}: Props) => {
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [movie, setMovie] = useState<Movie | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [cache] = useState<Record<string, Movie[]>>({});
 
-    const [movies, setMovies] = useState<Movie[]>([])
-    const [loading, setLoading] = useState(false)
+    const url = new URL(BASE_URL, window.location.origin);
+    url.searchParams.set("type", type);
+    if (id) url.searchParams.set("id", id);
+    if (query) url.searchParams.set("query", query);
+    if (page) url.searchParams.set("page", page.toString());
+    if (genres) url.searchParams.set("genres", genres);
+    if (year) url.searchParams.set("year", year.toString());
+    if (cast) url.searchParams.set("cast", cast);
+    url.searchParams.set("language", "es-ES");
 
     useEffect(() => {
         let mounted = true;
+        const cacheKey = url.toString();
 
-        const fetchMovies = async () => {
-            setLoading(true)
+        const fetchData = async () => {
+            if (cache[cacheKey]) {
+                setMovies(cache[cacheKey]);
+                return;
+            }
+
+            setLoading(true);
             try {
-                const getDatas = await fetch(_URL);
-                const data = await getDatas.json();
+                const res = await fetch(cacheKey);
+                const data = await res.json();
 
-                if (mounted && data.results) {
-                    setMovies(data.results);
-                    setLoading(false)
-                } else if (mounted) {
-                    console.error("API Error:", data);
-                    setMovies([]);
-                    setLoading(false);
+                if (!mounted) return;
+
+                if (type === "details" && id) {
+                    setMovie(data);
+                    return;
                 }
-            } catch (error) {
-                console.error("Error fetching movies:", error);
+
+                if (data.results) {
+                    setMovies(data.results);
+                    cache[cacheKey] = data.results;
+                } else {
+                    setMovies([]);
+                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+            } finally {
                 if (mounted) setLoading(false);
             }
-        }
+        };
 
-        fetchMovies()
+        fetchData();
 
         return () => {
             mounted = false;
-        }
+        };
 
-    }, [_URL])
+    }, [type, id, query, page, genres, cast, year]);
 
+    if (type === "details") {
+        return <>
+
+            {loading ? <MoviePlaceholderCard /> :
+                movie && <ShowSingleMovie movie={movie} />}
+        </>;
+    }
 
     return (
         <div className="row mx-auto">
-            {
-                <h1 className="titulo text-center"
-                    style={{ ...textTitleStyle, color: '#47428bff', fontWeight: 'bold', fontFamily: "serif" }}
-                >{textTitle}</h1>
-            }
+            <h1
+                className="titulo text-center"
+                style={{ ...textTitleStyle, color: "#47428bff", fontWeight: "bold", fontFamily: "serif" }}
+            >
+                {textTitle}
+            </h1>
 
-            {movies.length !== 0 && <MovieCarousel movies={movies?.slice(0, 5)} />}
-            {
-                movies.length !== 0 && loading ? <Loading /> : <ShowMovies movies={movies} marginTop="1rem" />
-            }
+            {movies.length > 0 && <MovieCarousel movies={movies.slice(0, 5)} />}
 
-            {
-                movies.length === 0 && <>
-                    {
-                        loading ? <Loading /> : < NoMovies title="No se encuentra peliculas" />
-                    }
-                </>
-            }
-        </div >
-    )
-}
+            {loading ? (
+                <Loading />
+            ) : movies.length > 0 ? (
+                <ShowMovies movies={movies} marginTop="1rem" />
+            ) : (
+                <NoMovies title="No se encuentran películas" />
+            )}
+        </div>
+    );
+};
 
-export default GetMovies
+export default GetMovies;

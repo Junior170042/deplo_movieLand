@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectCube, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, EffectCoverflow, Navigation, Pagination } from 'swiper/modules';
 
 import 'swiper/css';
-import 'swiper/css/effect-cube';
+import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
@@ -15,13 +15,16 @@ export default function MovieCarousel({ movies }: { movies: Movie[] }) {
     return (
         <div className="movie-carousel-container">
             <Swiper
-                modules={[Autoplay, EffectCube, Navigation, Pagination]}
-                effect="cube"
-                cubeEffect={{
-                    shadow: true,
+                modules={[Autoplay, EffectCoverflow, Navigation, Pagination]}
+                effect="coverflow"
+                centeredSlides={true}
+                slidesPerView="auto"
+                coverflowEffect={{
+                    rotate: 20,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
                     slideShadows: true,
-                    shadowOffset: 20,
-                    shadowScale: 0.94,
                 }}
                 autoplay={{
                     delay: 5000,
@@ -30,9 +33,9 @@ export default function MovieCarousel({ movies }: { movies: Movie[] }) {
                 }}
                 navigation
                 pagination={{ clickable: true, dynamicBullets: true }}
-                loop
-                speed={1000}
-                grabCursor
+                loop={true}
+                speed={800}
+                grabCursor={true}
                 className="movie-swiper"
             >
                 {movies.map((movie) => (

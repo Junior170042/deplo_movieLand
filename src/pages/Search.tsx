@@ -1,16 +1,24 @@
 import { useParams } from 'react-router-dom'
 import GetMovies from '../services/GetMovies'
-import { API_KEY } from '../variables_env';
+import { PaginationButton } from '../components/paginationButtton';
+import { YearButtons } from '../components/yearButtons';
+import { useState } from 'react';
+import useIsScrolling from '../hooks/useScroll';
 const Search = () => {
 
     const search = useParams<{ key: string }>()
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search.key}`;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+    const { handleScroll } = useIsScrolling();
 
     return (
         <div className=" popular">
             <div className="row mx-auto">
-                <GetMovies _URL={url} textTitle="Peliculas encontradas" />
+                <GetMovies type="search" query={search.key} page={currentPage} year={currentYear} textTitle="Peliculas encontradas" />
             </div>
+            <PaginationButton currentPage={currentPage} setCurrentPage={setCurrentPage} handleScroll={handleScroll} />
+            <YearButtons currentYear={currentYear} setCurrentYear={setCurrentYear}
+                handleScroll={handleScroll} />
         </div>
     )
 }

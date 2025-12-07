@@ -1,14 +1,13 @@
 
 import { useParams } from 'react-router-dom';
-import GetMovie from '../services/GetMovieId'
-import { API_KEY } from '../variables_env';
+import GetMovies from '../services/GetMovies';
 const Detalles = () => {
     const key = useParams<{ id: string }>()
-    const url = `https://api.themoviedb.org/3/movie/${key.id}?api_key=${API_KEY}`;
+
 
     return (
         <>
-            <GetMovie _URL={url} />
+            <GetMovies type="details" id={key.id} textTitleStyle={{ fontSize: "10px" }} />
         </>
     )
 }
