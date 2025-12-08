@@ -1,35 +1,29 @@
 /* Movie Carousel Container */
 .movie-carousel-container {
     width: 100%;
-    /* Use a fixed height or min-height that makes sense for posters */
     min-height: 600px;
     padding: 40px 0;
     position: relative;
     overflow: hidden;
-    /* Subtle gradient background */
     background: radial-gradient(circle at center, rgb(39, 24, 83) 0%, rgb(6, 4, 14) 100%);
 }
 
 /* Swiper Overrides */
 .movie-swiper {
     width: 100%;
-    /* Allow swiper to make use of container height */
     height: 100%;
     padding-top: 2rem;
     padding-bottom: 3rem;
 }
 
 .swiper-slide {
-    /* Define a fixed width for the slide so coverflow works nicely */
     background-position: center;
     background-size: cover;
     width: 300px;
     height: 480px;
-    /* Remove flex centering that might conflict with card layout */
     display: block;
 }
 
-/* Pagination Customization */
 .swiper-pagination-bullet {
     background: #fff;
     opacity: 0.5;

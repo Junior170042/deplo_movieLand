@@ -41,12 +41,15 @@
 }
 
 .nav-bar .box-links {
-    width: 75%;
+    width: 60%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-left: 24px;
     opacity: 1;
+}
+
+.nav-bar .box-links .more-links {
+    display: none;
 }
 
 
@@ -92,6 +95,11 @@
 
 .nav-bar a:first-child {
     font-size: 30px;
+}
+
+.nav-bar .box-links a:not(first-child) {
+    font-size: 20px;
+    margin-left: 18px;
 }
 
 .nav-bar a:not(.logo) {
@@ -234,6 +242,118 @@ form input:focus {
     display: none;
 }
 
+.nav-bar .btn-dropdown {
+    display: flex;
+    justify-content: flex-start;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    position: relative;
+    width: 10%;
+}
+
+.nav-bar .dropdown-content {
+    position: absolute;
+    background-color: var(--redColor);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    right: -100%;
+    top: 35%;
+    border-radius: 8px;
+    display: none;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+.nav-bar .btn-dropdown i {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 30%;
+    top: 25%;
+    transition: all 2s ease-in-out;
+}
+
+.nav-bar .btn-dropdown:hover {
+
+    i.fa-chevron-down {
+        animation: rotate 1s ease-in-out forwards;
+    }
+}
+
+.dropdown-content.open {
+    display: flex;
+    opacity: 1;
+    flex-wrap: wrap;
+    right: 0;
+    padding: 12px;
+    transition: all 1s ease-in-out;
+}
+
+.dropdown-content.open span {
+    cursor: pointer;
+    padding: 12px 20px;
+    transition: all .5s ease-in-out;
+    color: #fff;
+    font-size: 20px;
+    position: relative;
+}
+
+.dropdown-content.open span::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    width: 100%;
+    height: 55%;
+    background-color: var(--darkBlueColor);
+    border-radius: 6px;
+    transition: all .8s ease-in-out;
+    z-index: -1;
+    opacity: 0;
+}
+
+.dropdown-content.open span.active::after {
+    opacity: 1;
+}
+
+.dropdown-content.open span:hover::after {
+    animation: slideHover .5s ease-in-out forwards;
+}
+
+.dropdown-content.open span:hover {
+    scale: 1.2;
+}
+
+@keyframes slideHover {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+
+
 
 /*animation aparition effect for links*/
 @keyframes aparition {
@@ -327,10 +447,20 @@ form input:focus {
         width: 50%;
         height: 100vh;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        padding-top: 20%;
         z-index: 99;
         transition: all .5s ease-in-out;
+        overflow-y: auto;
+    }
+
+    .nav-bar.responsives .box-links::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .nav-bar.responsives .box-links .more-links span.active {
+        background-color: var(--redColor);
+        padding: 6px 20px;
+        border-radius: 6px;
     }
 
     .nav-bar .box-links.fade-out {
@@ -353,6 +483,30 @@ form input:focus {
         margin-bottom: 25px;
         transition: all .5s ease-in-out;
         animation: aparition 1.5s ease-in-out forwards;
+    }
+
+    .nav-bar .btn-dropdown {
+        display: none;
+    }
+
+    .nav-bar .box-links .more-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-bar .box-links .more-links span {
+        margin-bottom: 25px;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+    }
+
+    .nav-bar .box-links .more-links span:hover {
+        scale: 1.2;
     }
 
 }

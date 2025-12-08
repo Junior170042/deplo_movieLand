@@ -42,7 +42,7 @@ const ShowMovies = ({ movies, marginTop }: ShowMoviesProps) => {
                             </div>
 
                             <Link to={`/detalles/${movie.id}`} className="btn-show-details w-100 text-center">
-                                Detalles <span><i className="fa fa-arrow-right" /></span>
+                                Ver más <span><i className="fa fa-arrow-right" /></span>
                             </Link>
                         </div>
                     </div>
