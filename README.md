@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# 🎬 MovieLand
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, high-performance movie exploration platform built with **React 19**, **Vite**, and **TypeScript**. MovieLand offers a premium user experience with a sleek dark interface, glassmorphism effects, and smooth animations.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Dynamic Hero Carousel**: Showcasing the latest and most popular movies using Swiper.
+- **Advanced Movie Discovery**: Browse by categories (Comedy, Drama, Kids, etc.) and filter by year.
+- **Smart Search**: Real-time movie search across the TMDB database.
+- **Detailed Movie Profiles**: Immersive details page featuring backdrops, ratings, taglines, and external links.
+- **Premium UI/UX**:
+  - **Glassmorphism**: Elegant translucent interfaces with backdrop blurs.
+  - **Glow Effects**: Interactive hover states with dynamic glow animations.
+  - **Responsive Design**: Fully optimized for mobile, tablet, and desktop views.
+  - **Skeleton Loading**: Smooth content transitions using placeholder cards and loading skeletons.
+- **API Integrated**: Powered by TMDB API with a robust backend proxy layer on Vercel.
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React 19, Vite, TypeScript
+- **Styling**: Vanilla CSS (Custom Design System), FontAwesome
+- **Navigation**: React Router 6.3
+- **Animations**: CSS Transitions & Keyframes
+- **Networking**: Axios, Fetch API
+- **Utilities**: Swiper (Carousel), React Loading Skeleton
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📦 Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (Latest LTS recommended)
+- npm or yarn
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Junior170042/deplo_movieLand.git
+   cd deplo_movieLand
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Environment Setup**:
+   Create a `.env` file in the root directory and add your TMDB API key (if applicable):
+   ```env
+   VITE_TMDB_API_KEY=your_api_key_here
+   ```
 
-### `npm run eject`
+4. **Run in development mode**:
+   ```bash
+   npm run dev
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. **Build for production**:
+   ```bash
+   npm run build
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 Design Philosophy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+MovieLand focuses on a **"Midnight Premium"** aesthetic. The design uses a deep color palette (`#06040e`, `#271853`) contrasted with vibrant accents like **Hot Pink** and **Electric Blue**. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Key design elements include:
+- **Depth**: Multi-layered backgrounds and box-shadows.
+- **Interactivity**: 3D-like hover effects on movie cards.
+- **Readability**: High-contrast typography and clear layout grids.
 
-## Learn More
+## 📄 License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project is open-source and available under the MIT License.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+*Created with ❤️ by Junior170042*
